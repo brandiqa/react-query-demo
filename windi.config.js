@@ -1,10 +1,9 @@
+const forms = require('windicss/plugin/forms')
+
 module.exports = {
-  darkMode: false, // or 'media' or 'class'
+  darkMode: 'class', // or 'media' or 'class' or false
+  plugins: [forms],
   theme: {
     extend: {},
   },
-  variants: {
-    extend: {},
-  },
-  plugins: [require('windicss/plugin/forms')],
 }

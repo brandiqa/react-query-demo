@@ -2,16 +2,16 @@ import React from 'react'
 import { Route, Switch } from 'react-router'
 import BasicQuery from './components/BasicQuery'
 import InfinteQuery from './components/InfinteQuery'
-import Navbar from './components/Navbar'
+import Navbar from './layout/Navbar'
 import PaginatedQuery from './components/PaginatedQuery'
 
 function App() {
   return (
-    <div>
+    <React.Fragment>
       <header>
         <Navbar />
       </header>
-      <main>
+      <main className="container mx-auto mt-8">
         <Switch>
           <Route path="/" exact>
             <BasicQuery />
@@ -24,7 +24,7 @@ function App() {
           </Route>
         </Switch>
       </main>
-    </div>
+    </React.Fragment>
   )
 }
 
