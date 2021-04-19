@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import EditIcon from '../icons/edit'
 import DeleteIcon from '../icons/delete'
 
+import './table.css'
+
 function UserTable({ users }) {
   const deleteUser = (id) => {
     alert(`Delete User ${id}`)
@@ -11,7 +13,7 @@ function UserTable({ users }) {
 
   const rows = users.map((user, index) => (
     <tr
-      className="border border-cyan-800 hover:bg-gray-300 active:bg-blue-200"
+      className="bg-white border border-cyan-800 hover:bg-lime-100 active:bg-lime-700 active:text-lime-100"
       key={index}
     >
       <td>{user.id}</td>
@@ -39,8 +41,11 @@ function UserTable({ users }) {
   return (
     <div>
       <div className="mb-4">
-        <Link to="/user/create" className="">
-          Add User
+        <Link
+          to="/user/create"
+          className="rounded font-semibold border-2 border-teal-700 py-1 px-4 text-teal-900 hover:border-none hover:bg-teal-800 hover:text-white"
+        >
+          Create User
         </Link>
       </div>
       <table className="table-auto">

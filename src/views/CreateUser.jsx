@@ -5,7 +5,7 @@ import UserForm from '../components/UserForm'
 function CreateUser() {
   return (
     <div>
-      <h2>Edit User</h2>
+      <h2>Create User</h2>
       <UserForm />
     </div>
   )
