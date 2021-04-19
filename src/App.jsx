@@ -2,10 +2,11 @@ import React from 'react'
 import { Route, Switch } from 'react-router'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
-import BasicQuery from './components/BasicQuery'
-import InfinteQuery from './components/InfinteQuery'
+
 import Navbar from './layout/Navbar'
-import PaginatedQuery from './components/PaginatedQuery'
+import BasicQuery from './views/BasicQuery'
+import InfinteQuery from './views/InfinteQuery'
+import PaginatedQuery from './views/PaginatedQuery'
 
 function App() {
   // Create a client

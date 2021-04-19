@@ -3,6 +3,10 @@ import EditIcon from '../icons/edit'
 import DeleteIcon from '../icons/delete'
 
 function UserTable({ users }) {
+  const deleteUser = (id) => {
+    alert(`Delete User ${id}`)
+  }
+
   const rows = users.map((user, index) => (
     <tr
       className="border border-cyan-800 hover:bg-gray-300 active:bg-blue-200"
@@ -17,7 +21,10 @@ function UserTable({ users }) {
         <button className="p-2 hover:text-cyan-500">
           <EditIcon />
         </button>
-        <button className="p-2 hover:text-cyan-500">
+        <button
+          className="p-2 hover:text-cyan-500"
+          onClick={() => deleteUser(user.id)}
+        >
           <DeleteIcon />
         </button>
       </td>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useQuery } from 'react-query'
 
-import UserTable from './UserTable'
+import UserTable from '../components/UserTable'
 
 const fetchUsers = async () => {
   const res = await fetch(' http://localhost:3004/users')
