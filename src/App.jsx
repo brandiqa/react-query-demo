@@ -8,6 +8,9 @@ import BasicQuery from './views/BasicQuery'
 import InfinteQuery from './views/InfinteQuery'
 import PaginatedQuery from './views/PaginatedQuery'
 
+import CreateUser from './views/CreateUser'
+import EditUser from './views/EditUser'
+
 function App() {
   // Create a client
   const queryClient = new QueryClient()
@@ -17,7 +20,7 @@ function App() {
       <header>
         <Navbar />
       </header>
-      <main className="container mx-auto mt-8">
+      <main className="container mx-auto mt-8 p-4 lg:w-screen-lg">
         <QueryClientProvider client={queryClient}>
           <Switch>
             <Route path="/" exact>
@@ -28,6 +31,12 @@ function App() {
             </Route>
             <Route path="/infinite">
               <InfinteQuery />
+            </Route>
+            <Route path="/user/create">
+              <CreateUser />
+            </Route>
+            <Route path="/user/edit/:id">
+              <EditUser />
             </Route>
           </Switch>
           <ReactQueryDevtools initialIsOpen={false} />

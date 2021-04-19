@@ -14,7 +14,7 @@ function BasicQuery() {
   return (
     <div>
       <h2 className="mb-4">Basic Query Example</h2>
-      <div className="flex justify-center">
+      <div>
         {status === 'error' && <div>Error fetchiing data</div>}
 
         {status === 'loading' && <div>Loading...</div>}

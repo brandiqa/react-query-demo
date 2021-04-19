@@ -5,6 +5,10 @@ body {
     sans-serif;
 }
 
+a {
+  @apply text-gray-700 no-underline;
+}
+
 h2 {
   @apply font-bold text-xl;
 }

@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+
 import EditIcon from '../icons/edit'
 import DeleteIcon from '../icons/delete'
 
@@ -17,12 +19,15 @@ function UserTable({ users }) {
       <td>{user.last_name}</td>
       <td className="hover:underline">{user.email}</td>
       <td>{user.gender}</td>
-      <td className="border-none text-cyan-800 inline-flex">
-        <button className="p-2 hover:text-cyan-500">
+      <td className="border-none inline-flex">
+        <Link
+          className="p-2 text-cyan-800 hover:text-cyan-500"
+          to={`/user/edit/${user.id}`}
+        >
           <EditIcon />
-        </button>
+        </Link>
         <button
-          className="p-2 hover:text-cyan-500"
+          className="p-2 text-cyan-800 hover:text-cyan-500"
           onClick={() => deleteUser(user.id)}
         >
           <DeleteIcon />
@@ -32,19 +37,26 @@ function UserTable({ users }) {
   ))
 
   return (
-    <table className="table-auto">
-      <thead className="bg-cyan-900 text-white">
-        <tr className="py-4">
-          <th>Id</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Email</th>
-          <th>Gender</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>{rows}</tbody>
-    </table>
+    <div>
+      <div className="mb-4">
+        <Link to="/user/create" className="">
+          Add User
+        </Link>
+      </div>
+      <table className="table-auto">
+        <thead className="bg-cyan-900 text-white">
+          <tr className="py-4">
+            <th>Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Gender</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>{rows}</tbody>
+      </table>
+    </div>
   )
 }
 
