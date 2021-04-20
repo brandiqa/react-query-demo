@@ -3,9 +3,8 @@ import React from 'react'
 import UserForm from '../components/UserForm'
 
 function CreateUser() {
-  const onSubmit = (e) => {
-    e.preventDefault()
-    console.log('create not done')
+  const onSubmit = async (data) => {
+    console.log(data)
   }
 
   return (

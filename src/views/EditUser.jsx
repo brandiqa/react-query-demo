@@ -3,9 +3,8 @@ import React from 'react'
 import UserForm from '../components/UserForm'
 
 function EditUser() {
-  const onSubmit = (e) => {
-    e.preventDefault()
-    console.log('update not done')
+  const onSubmit = async (data) => {
+    console.log(data)
   }
 
   return (
