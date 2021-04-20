@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useForm } from 'react-hook-form'
-import { Redirect, useLocation } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 import './form.css'
 
@@ -13,19 +13,7 @@ function UserForm({ user, submitText, submitAction }) {
     defaultValues: user || {}
   })
 
-  const { state } = useLocation()
-  const { from } = state || { from: { pathname: '/' } }
-  const [redirectToReferrer, setRedirectToReferrer] = useState(false)
-  console.log(state)
-
-  const redirect = (e) => {
-    e.preventDefault()
-    setRedirectToReferrer(true)
-  }
-
-   if (redirectToReferrer) {
-     return <Redirect to={from} />
-   }
+  const history = useHistory()
 
   return (
     <div>
@@ -89,7 +77,7 @@ function UserForm({ user, submitText, submitAction }) {
           >
             {submitText}
           </button>
-          <button className="border-2 border-gray-600 shadow-md text-white text-gray-600 btn hover:bg-gray-600 hover:text-gray-100" onClick={redirect}>
+          <button className="border-2 border-gray-600 shadow-md text-white text-gray-600 btn hover:bg-gray-600 hover:text-gray-100" type="button" onClick={() => history.goBack()}>
             Back
           </button>
         </div>
