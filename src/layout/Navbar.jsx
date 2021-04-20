@@ -1,14 +1,14 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 import './navbar.css'
 
 function Navbar() {
   return (
-    <nav className="container flex justify-between p-4 mx-auto lg:w-screen-lg">
-      <div>
+    <nav className="container flex mx-auto p-4 justify-between lg:w-screen-lg">
+      <Link className="w-full" to="/">
         <img src="/logo.svg" alt="React Query" width="200" />
-      </div>
+      </Link>
       <div className="flex">
         <NavLink to="/" exact>
           Basic
