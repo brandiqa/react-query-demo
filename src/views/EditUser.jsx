@@ -1,17 +1,26 @@
 import React from 'react'
 import { useQuery } from 'react-query'
-import { useParams } from "react-router-dom";
+import { useParams } from 'react-router-dom'
 
 import UserForm from '../components/UserForm'
 
-const fetchUser = async (id) => {
-  const res = await fetch(`http://localhost:3004/users/${id}`)
-  return res.json()
+const getUser = async ({ queryKey }) => {
+  const [_key, { id }] = queryKey
+  const response = await fetch(`http://localhost:3004/users/${id}`)
+
+  if (!response.ok) {
+    throw new Error(response.json().message)
+  }
+
+  return response.json()
 }
 
 function EditUser() {
-  const { id } = useParams();
-  const { data, status } = useQuery('user', () => fetchUser(id))
+  const { id } = useParams()
+  const { data, error, isLoading, isError } = useQuery(
+    ['user', { id }],
+    getUser
+  )
 
   const onSubmit = async (data) => {
     console.log(data)
@@ -21,13 +30,14 @@ function EditUser() {
     <div>
       <h2>Edit User</h2>
       <div>
-        {status === 'error' && <div>Error fetching data</div>}
+        {isError && <div>{error}</div>}
 
-        {status === 'loading' && <div>Loading...</div>}
+        {isLoading && <div>Loading...</div>}
 
-        {status === 'success' && <UserForm user={data} submitText="Update" submitAction={onSubmit} />}
+        {data && (
+          <UserForm user={data} submitText="Update" submitAction={onSubmit} />
+        )}
       </div>
-
     </div>
   )
 }

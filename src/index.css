@@ -12,3 +12,7 @@ a {
 h2 {
   @apply font-bold text-xl;
 }
+
+button::disabled {
+  @apply cursor-not-allowed;
+}
