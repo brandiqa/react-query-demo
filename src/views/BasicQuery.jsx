@@ -15,7 +15,7 @@ function BasicQuery() {
     <div>
       <h2 className="mb-4">Basic Query Example</h2>
       <div>
-        {status === 'error' && <div>Error fetchiing data</div>}
+        {status === 'error' && <div>Error fetching data</div>}
 
         {status === 'loading' && <div>Loading...</div>}
 

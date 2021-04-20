@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { Redirect, useLocation } from 'react-router-dom'
 
 import './form.css'
 
@@ -9,6 +10,19 @@ function UserForm({ user, submitText, submitAction }) {
     formState: { errors },
     handleSubmit,
   } = useForm()
+
+  const { state } = useLocation()
+  const { from } = state || { from: { pathname: '/' } }
+  const [redirectToReferrer, setRedirectToReferrer] = useState(false)
+
+  const redirect = (e) => {
+    e.preventDefault()
+    setRedirectToReferrer(true)
+  }
+
+   if (redirectToReferrer) {
+     return <Redirect to={from} />
+   }
 
   return (
     <div>
@@ -65,14 +79,14 @@ function UserForm({ user, submitText, submitAction }) {
           </span>
         </section>
 
-        <div className="flex justify-between mt-8">
+        <div className="flex mt-8 justify-between">
           <button
-            className="text-white bg-teal-800 border-teal-800 shadow-md btn hover:bg-gray-100 hover:border-2 hover:text-teal-900"
+            className="bg-teal-800 border-teal-800 shadow-md text-white btn hover:bg-gray-100 hover:border-2 hover:text-teal-900"
             type="submit"
           >
             {submitText}
           </button>
-          <button className="text-white text-gray-600 border-2 border-gray-600 shadow-md btn hover:bg-gray-600 hover:text-gray-100">
+          <button className="border-2 border-gray-600 shadow-md text-white text-gray-600 btn hover:bg-gray-600 hover:text-gray-100" onClick={redirect}>
             Back
           </button>
         </div>
