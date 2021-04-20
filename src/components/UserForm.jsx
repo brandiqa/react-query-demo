@@ -9,9 +9,9 @@ function UserForm({ user, submitText, submitAction }) {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm()
-
-  console.log(user)
+  } = useForm({
+    defaultValues: user || {}
+  })
 
   const { state } = useLocation()
   const { from } = state || { from: { pathname: '/' } }
@@ -39,17 +39,17 @@ function UserForm({ user, submitText, submitAction }) {
 
         <section className="flex flex-col field md:flex-row">
           <div>
-            <label htmlFor="firstName">First Name</label>
-            <input type="text" {...register('firstName', { required: true })} />
+            <label htmlFor="first_name">First Name</label>
+            <input type="text" {...register('first_name', { required: true })} />
             <span className="errors">
-              {errors.firstName && 'First name is required'}
+              {errors.first_name && 'First name is required'}
             </span>
           </div>
           <div className="mt-2 md:mt-0 md:ml-4">
-            <label htmlFor="lastName">Last Name</label>
-            <input type="text" {...register('lastName', { required: true })} />
+            <label htmlFor="last_name">Last Name</label>
+            <input type="text" {...register('last_name', { required: true })} />
             <span className="errors">
-              {errors.lastName && 'Last name is required'}
+              {errors.last_name && 'Last name is required'}
             </span>
           </div>
         </section>
@@ -73,7 +73,7 @@ function UserForm({ user, submitText, submitAction }) {
         <section className="field">
           <label htmlFor="gender">Gender</label>
           <select {...register('gender', { required: true })}>
-            <option value="">Select gender</option>
+            <option value=""></option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
           </select>
