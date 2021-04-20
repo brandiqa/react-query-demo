@@ -11,9 +11,12 @@ function UserForm({ user, submitText, submitAction }) {
     handleSubmit,
   } = useForm()
 
+  console.log(user)
+
   const { state } = useLocation()
   const { from } = state || { from: { pathname: '/' } }
   const [redirectToReferrer, setRedirectToReferrer] = useState(false)
+  console.log(state)
 
   const redirect = (e) => {
     e.preventDefault()
