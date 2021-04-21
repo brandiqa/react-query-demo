@@ -34,7 +34,7 @@ function PaginatedQuery() {
     <div>
       <h2 className="mb-4">Paginated Query Example</h2>
       <div>
-        {isError && <div>An error occurred: {error}</div>}
+        {isError && <div>An error occurred: {error.message}</div>}
 
         {isLoading && <div>Loading...</div>}
 

@@ -8,8 +8,13 @@ const fetchUsers = async () => {
   return res.json()
 }
 
+const fetchSortedUsers = async () => {
+  const res = await fetch('http://localhost:3004/users?_sort=id&_order=desc')
+  return res.json()
+}
+
 function BasicQuery() {
-  const { data, status } = useQuery('users', fetchUsers)
+  const { data, status } = useQuery('users', fetchSortedUsers)
 
   return (
     <div>
