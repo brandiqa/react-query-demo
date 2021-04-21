@@ -24,7 +24,3 @@ input:disabled {
 .errors {
   @apply text-sm text-red-500;
 }
-
-.btn {
-  @apply rounded font-semibold shadow-md py-1 px-4 w-24 focus:outline-none focus:border-cyan-500 focus:ring-cyan-500 focus:ring-2;
-}

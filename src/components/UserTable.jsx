@@ -48,15 +48,15 @@ function UserTable({ users }) {
           Create User
         </Link>
       </div>
-      <table className="table-auto">
+      <table className="table-fixed">
         <thead className="bg-cyan-900 text-white">
           <tr className="py-4">
-            <th>Id</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Gender</th>
-            <th>Action</th>
+            <th className="w-1/12">Id</th>
+            <th className="w-3/12">First Name</th>
+            <th className="w-3/12">Last Name</th>
+            <th className="w-3/12">Email</th>
+            <th className="w-1/12">Gender</th>
+            <th className="w-1/12">Action</th>
           </tr>
         </thead>
         <tbody>{rows}</tbody>
