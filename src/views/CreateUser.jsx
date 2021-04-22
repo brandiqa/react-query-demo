@@ -1,18 +1,34 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import axios from 'axios'
+import { Redirect } from 'react-router-dom'
 import { useMutation } from 'react-query'
 
+import { AppContext } from '../store/app-context'
 import UserForm from '../components/UserForm'
-import { Redirect } from 'react-router-dom'
+
+async function postUser(newUser) {
+  const response = await axios.post('http://localhost:3004/users', newUser)
+  return await response.data
+}
 
 function CreateUser() {
-  const mutation = useMutation((newUser) =>
-    axios.post('http://localhost:3004/users', newUser)
-  )
+  const [flashMessage, setFlashMessage] = useContext(AppContext)
+  const mutation = useMutation((newUser) => postUser(newUser), {
+    onSuccess: (data) => {
+      setFlashMessage(
+        `New User Created - Id: ${data.id} Name: ${data.first_name} ${data.last_name}`
+      )
+    },
+  })
+
   const { isLoading, isError, error, isSuccess } = mutation
 
   const onSubmit = async (data) => {
     mutation.mutate(data)
+  }
+
+  if (isSuccess) {
+    return <Redirect to="/" />
   }
 
   return (
@@ -22,8 +38,6 @@ function CreateUser() {
       {isError && <div>An error occurred: {error.message}</div>}
 
       {isLoading && <div>Loading...</div>}
-
-      {isSuccess && <Redirect to="/" />}
 
       <UserForm submitText="Create" submitAction={onSubmit} />
     </div>

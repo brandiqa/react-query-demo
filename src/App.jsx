@@ -3,6 +3,8 @@ import { Route, Switch } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 
+import { AppContextProvider } from './store/app-context'
+
 import Navbar from './layout/Navbar'
 import BasicQuery from './views/BasicQuery'
 import InfinteQuery from './views/InfinteQuery'
@@ -22,23 +24,25 @@ function App() {
       </header>
       <main className="container mx-auto mt-8 p-4 lg:w-screen-lg">
         <QueryClientProvider client={queryClient}>
-          <Switch>
-            <Route path="/" exact>
-              <BasicQuery />
-            </Route>
-            <Route path="/paginated">
-              <PaginatedQuery />
-            </Route>
-            <Route path="/infinite">
-              <InfinteQuery />
-            </Route>
-            <Route path="/user/create">
-              <CreateUser />
-            </Route>
-            <Route path="/user/edit/:id">
-              <EditUser />
-            </Route>
-          </Switch>
+          <AppContextProvider>
+            <Switch>
+              <Route path="/" exact>
+                <BasicQuery />
+              </Route>
+              <Route path="/paginated">
+                <PaginatedQuery />
+              </Route>
+              <Route path="/infinite">
+                <InfinteQuery />
+              </Route>
+              <Route path="/user/create">
+                <CreateUser />
+              </Route>
+              <Route path="/user/edit/:id">
+                <EditUser />
+              </Route>
+            </Switch>
+          </AppContextProvider>
           <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
       </main>

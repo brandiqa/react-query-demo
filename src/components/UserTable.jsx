@@ -1,5 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+
+import { AppContext } from '../store/app-context'
+import FlashAlert from './FlashAlert'
 
 import EditIcon from '../icons/edit'
 import DeleteIcon from '../icons/delete'
@@ -7,6 +10,8 @@ import DeleteIcon from '../icons/delete'
 import './table.css'
 
 function UserTable({ users }) {
+  const [flashMessage] = useContext(AppContext)
+
   const deleteUser = (id) => {
     alert(`Delete User ${id}`)
   }
@@ -40,13 +45,14 @@ function UserTable({ users }) {
 
   return (
     <div>
-      <div className="mb-4">
+      <div className="flex mb-4 justify-between items-center">
         <Link
           to="/user/create"
           className="rounded font-semibold border-2 border-teal-700 py-1 px-4 text-teal-900 hover:border-none hover:bg-teal-800 hover:text-white"
         >
           Create User
         </Link>
+        {flashMessage && <FlashAlert message={flashMessage} />}
       </div>
       <table className="table-fixed">
         <thead className="bg-cyan-900 text-white">
