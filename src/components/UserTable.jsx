@@ -1,5 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
+import { useMutate } from 'react-query'
 
 import { AppContext } from '../store/app-context'
 import FlashAlert from './FlashAlert'
@@ -9,24 +11,37 @@ import DeleteIcon from '../icons/delete'
 
 import './table.css'
 import DeleteModal from './DeleteModal'
+import { useMutation } from 'react-query'
+
+async function deleteUser(id) {
+  const response = axios.delete(`http://localhost:3004/users/${id}`)
+  return await response.data
+}
 
 function UserTable({ users }) {
   // Delete Modal Show State
   const [deleteId, setDeleteId] = useState(0)
   const [showModal, setShowModal] = useState(false)
-  const [flashMessage] = useContext(AppContext)
+  const [flashMessage, setFlashMessage] = useContext(AppContext)
+
+  const mutation = useMutation((id) => deleteUser(id), {
+    onSuccess: (data) => {
+      console.log(data)
+      setFlashMessage('User has been deleted')
+      hideModal()
+    },
+  })
 
   const showDeleteModal = (id) => {
     setDeleteId(id)
     setShowModal(true)
   }
 
-  const deleteUser = (id) => {
-    cancelDelete()
-    alert(`Delete User ${id}`)
+  const onDelete = (id) => {
+    mutation.mutate(id)
   }
 
-  const cancelDelete = () => setShowModal(false)
+  const hideModal = () => setShowModal(false)
 
   const rows = users.map((user, index) => (
     <tr
@@ -60,8 +75,8 @@ function UserTable({ users }) {
       <DeleteModal
         id={deleteId}
         showModal={showModal}
-        deleteAction={deleteUser}
-        cancelAction={cancelDelete}
+        deleteAction={onDelete}
+        cancelAction={hideModal}
       />
       <div className="flex mb-4 justify-between items-center">
         <Link
