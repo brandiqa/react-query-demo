@@ -1,6 +1,7 @@
 import React from 'react'
-import { useQuery } from 'react-query'
-import { useParams } from 'react-router-dom'
+import axios from 'axios'
+import { useQuery, useMutation } from 'react-query'
+import { useParams, Redirect } from 'react-router-dom'
 
 import UserForm from '../components/UserForm'
 
@@ -22,8 +23,18 @@ function EditUser() {
     getUser
   )
 
+  const mutation = useMutation((formData) =>
+    axios.put(`http://localhost:3004/users/${id}`, formData)
+  )
+
+  const { isSuccess } = mutation
+
   const onSubmit = async (data) => {
-    console.log(data)
+    mutation.mutate(data)
+  }
+
+  if (isSuccess) {
+    return <Redirect to="/" />
   }
 
   return (
