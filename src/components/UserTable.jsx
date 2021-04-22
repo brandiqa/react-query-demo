@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 
 import { AppContext } from '../store/app-context'
@@ -8,13 +8,25 @@ import EditIcon from '../icons/edit'
 import DeleteIcon from '../icons/delete'
 
 import './table.css'
+import DeleteModal from './DeleteModal'
 
 function UserTable({ users }) {
+  // Delete Modal Show State
+  const [deleteId, setDeleteId] = useState(0)
+  const [showModal, setShowModal] = useState(false)
   const [flashMessage] = useContext(AppContext)
 
+  const showDeleteModal = (id) => {
+    setDeleteId(id)
+    setShowModal(true)
+  }
+
   const deleteUser = (id) => {
+    cancelDelete()
     alert(`Delete User ${id}`)
   }
+
+  const cancelDelete = () => setShowModal(false)
 
   const rows = users.map((user, index) => (
     <tr
@@ -35,7 +47,7 @@ function UserTable({ users }) {
         </Link>
         <button
           className="p-2 text-cyan-800 hover:text-cyan-500"
-          onClick={() => deleteUser(user.id)}
+          onClick={() => showDeleteModal(user.id)}
         >
           <DeleteIcon />
         </button>
@@ -44,7 +56,13 @@ function UserTable({ users }) {
   ))
 
   return (
-    <div>
+    <React.Fragment>
+      <DeleteModal
+        id={deleteId}
+        showModal={showModal}
+        deleteAction={deleteUser}
+        cancelAction={cancelDelete}
+      />
       <div className="flex mb-4 justify-between items-center">
         <Link
           to="/user/create"
@@ -67,7 +85,7 @@ function UserTable({ users }) {
         </thead>
         <tbody>{rows}</tbody>
       </table>
-    </div>
+    </React.Fragment>
   )
 }
 

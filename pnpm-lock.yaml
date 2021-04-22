@@ -8,6 +8,7 @@ specifiers:
   react: ^17.0.0
   react-dom: ^17.0.0
   react-hook-form: ^7.2.1
+  react-modal: ^3.13.1
   react-query: ^3.13.10
   react-router-dom: ^5.2.0
   vite: ^2.1.5
@@ -19,6 +20,7 @@ dependencies:
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
   react-hook-form: 7.2.1_react@17.0.2
+  react-modal: 3.13.1_react-dom@17.0.2+react@17.0.2
   react-query: 3.13.10_react-dom@17.0.2+react@17.0.2
   react-router-dom: 5.2.0_react@17.0.2
 
@@ -766,6 +768,10 @@ packages:
     resolution: {integrity: sha1-Qa4u62XvpiJorr/qg6x9eSmbCIc=}
     engines: {node: '>= 0.6'}
     dev: true
+
+  /exenv/1.2.2:
+    resolution: {integrity: sha1-KueOhdmJQVhnCwPUe+wfA72Ru50=}
+    dev: false
 
   /express-urlrewrite/1.4.0:
     resolution: {integrity: sha512-PI5h8JuzoweS26vFizwQl6UTF25CAHSggNv0J25Dn/IKZscJHWZzPrI5z2Y2jgOzIaw2qh8l6+/jUcig23Z2SA==}
@@ -1630,6 +1636,25 @@ packages:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
     dev: false
 
+  /react-lifecycles-compat/3.0.4:
+    resolution: {integrity: sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==}
+    dev: false
+
+  /react-modal/3.13.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha512-m6yXK7I4YKssQnsjHK7xITSXy2O81BSOHOsg0/uWAsdKtuT9HF2tdoYhRuxNNQg2V+LgepsoHUPJKS8m6no+eg==}
+    engines: {node: '>=8'}
+    peerDependencies:
+      react: ^0.14.0 || ^15.0.0 || ^16 || ^17
+      react-dom: ^0.14.0 || ^15.0.0 || ^16 || ^17
+    dependencies:
+      exenv: 1.2.2
+      prop-types: 15.7.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      react-lifecycles-compat: 3.0.4
+      warning: 4.0.3
+    dev: false
+
   /react-query/3.13.10_react-dom@17.0.2+react@17.0.2:
     resolution: {integrity: sha512-wFvKhEDnOVL5bFL+9KPgNsiOOei1Ad+l6l1awCBuoX7xMG+SXXKDOF2uuZFsJe0w6gdthdWN+00021yepTR31g==}
     peerDependencies:
@@ -2086,6 +2111,12 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
+
+  /warning/4.0.3:
+    resolution: {integrity: sha512-rpJyN222KWIvHJ/F53XSZv0Zl/accqHR8et1kpaMTD/fLCRxtV8iX8czMzY7sVZupTI3zcUTg8eycS2kNF9l6w==}
+    dependencies:
+      loose-envify: 1.4.0
+    dev: false
 
   /widest-line/3.1.0:
     resolution: {integrity: sha512-NsmoXalsWVDMGupxZ5R08ka9flZjjiLvHVAWYOKtiKM8ujtZWr9cRffak+uSE48+Ob8ObalXpwyeUiyDD6QFgg==}
