@@ -14,5 +14,13 @@ h2 {
 }
 
 .btn {
-  @apply rounded font-semibold shadow-md py-1 px-4 w-24 focus:outline-none focus:border-cyan-500 focus:ring-cyan-500 focus:ring-2 disabled:cursor-not-allowed disabled:opacity-50;
+  @apply rounded font-semibold shadow-md py-1 px-4 focus:outline-none focus:border-cyan-500 focus:ring-cyan-500 focus:ring-2 disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+.btn-page {
+  @apply w-24 bg-white border hover:bg-teal-900 hover:text-white;
+}
+
+.btn-load {
+  @apply w-32 bg-white border hover:bg-teal-900 hover:text-white;
 }

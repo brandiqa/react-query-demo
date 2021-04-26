@@ -15,7 +15,7 @@ const fetchUsers = async (page = 1) => {
 function PaginatedQuery() {
   const [page, setPage] = useState(1)
   const { data, isLoading, isError, status, error } = useQuery(
-    ['users', page],
+    ['paginatedUsers', page],
     () => fetchUsers(page),
     {
       keepPreviousData: true,
@@ -41,14 +41,18 @@ function PaginatedQuery() {
         {status === 'success' && <UserTable users={data} />}
       </div>
       <div className="flex mt-4 justify-between items-center">
-        <button className="btn" onClick={prevPage} disabled={page <= 1}>
+        <button
+          className="btn btn-page"
+          onClick={prevPage}
+          disabled={page <= 1}
+        >
           Prev
         </button>
         <span className="rounded font-semibold text-teal-900">
           Page: {page}
         </span>
         <button
-          className="btn"
+          className="btn btn-page"
           onClick={nextPage}
           disabled={data && data.length < pageLimit}
         >
