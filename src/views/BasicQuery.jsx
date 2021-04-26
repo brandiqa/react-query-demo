@@ -5,7 +5,7 @@ import axios from 'axios'
 import UserTable from '../components/UserTable'
 
 function BasicQuery() {
-  const { data, status } = useQuery('users', () =>
+  const { data, error, status } = useQuery('users', () =>
     axios.get('http://localhost:3004/users')
   )
 
@@ -13,7 +13,7 @@ function BasicQuery() {
     <div>
       <h2 className="mb-4">Basic Query Example</h2>
       <div>
-        {status === 'error' && <div>Error fetching data</div>}
+        {status === 'error' && <div>{error.message}</div>}
 
         {status === 'loading' && <div>Loading...</div>}
 
