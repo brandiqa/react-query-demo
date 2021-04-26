@@ -1,5 +1,4 @@
 import React from 'react'
-// import Modal from './Modal'
 import Modal from 'react-modal'
 import ExclamationIcon from '../icons/exclamation'
 
@@ -17,7 +16,6 @@ const customStyles = {
   },
 }
 
-// Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
 Modal.setAppElement('#modal-root')
 
 function DeleteModal({ id, showModal, deleteAction, cancelAction }) {
