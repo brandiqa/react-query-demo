@@ -1,20 +1,13 @@
 import React from 'react'
 import { useQuery } from 'react-query'
+import axios from 'axios'
 
 import UserTable from '../components/UserTable'
 
-const fetchUsers = async () => {
-  const res = await fetch('http://localhost:3004/users')
-  return res.json()
-}
-
-const fetchSortedUsers = async () => {
-  const res = await fetch('http://localhost:3004/users?_sort=id&_order=desc')
-  return res.json()
-}
-
 function BasicQuery() {
-  const { data, status } = useQuery('users', fetchSortedUsers)
+  const { data, status } = useQuery('users', () =>
+    axios.get('http://localhost:3004/users')
+  )
 
   return (
     <div>
@@ -24,7 +17,7 @@ function BasicQuery() {
 
         {status === 'loading' && <div>Loading...</div>}
 
-        {status === 'success' && <UserTable users={data} />}
+        {status === 'success' && <UserTable users={data.data} />}
       </div>
     </div>
   )
