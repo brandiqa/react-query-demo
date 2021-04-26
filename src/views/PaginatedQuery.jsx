@@ -16,7 +16,7 @@ function PaginatedQuery() {
   const [page, setPage] = useState(1)
   const { data, isLoading, isError, status, error } = useQuery(
     ['users', page],
-    (page) => fetchUsers(page),
+    () => fetchUsers(page),
     {
       keepPreviousData: true,
     }
