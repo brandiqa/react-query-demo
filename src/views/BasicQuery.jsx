@@ -1,13 +1,13 @@
 import React from 'react'
 import { useQuery } from 'react-query'
-import axios from 'axios'
 
 import UserTable from '../components/UserTable'
 
 function BasicQuery() {
-  const { data, error, status } = useQuery('users', () =>
-    axios.get('http://localhost:3004/users')
-  )
+  const fetchAllUsers = async () =>
+    await (await fetch('http://localhost:3004/users')).json()
+
+  const { data, error, status } = useQuery('users', fetchAllUsers)
 
   return (
     <div>
@@ -17,7 +17,7 @@ function BasicQuery() {
 
         {status === 'loading' && <div>Loading...</div>}
 
-        {status === 'success' && <UserTable users={data.data} />}
+        {status === 'success' && <UserTable users={data} />}
       </div>
     </div>
   )

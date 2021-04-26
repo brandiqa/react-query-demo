@@ -6,10 +6,11 @@ import UserTable from '../components/UserTable'
 const pageLimit = 15
 
 const fetchUsers = async (page = 1) => {
-  const res = await fetch(
+  const response = await fetch(
     `http://localhost:3004/users?_page=${page}&_limit=${pageLimit}`
   )
-  return res.json()
+  // console.log(res.headers.get('Link')) // Can be used to validate pagination buttons
+  return response.json()
 }
 
 function PaginatedQuery() {
@@ -34,7 +35,7 @@ function PaginatedQuery() {
     <div>
       <h2 className="mb-4">Paginated Query Example</h2>
       <div>
-        {isError && <div>An error occurred: {error.message}</div>}
+        {isError && <div>{error.message}</div>}
 
         {isLoading && <div>Loading...</div>}
 
