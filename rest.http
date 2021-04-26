@@ -3,12 +3,12 @@ GET http://localhost:3004/users/
 
 ###
 
-# GET paginated users request
+# GET sorted users request
 GET http://localhost:3004/users?_sort=id&_order=desc
 
 ###
 
-# GET sorted users request
+# GET paginated users request
 GET http://localhost:3004/users?_page=5&_limit=10
 
 ###
