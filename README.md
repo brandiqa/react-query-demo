@@ -9,11 +9,12 @@ This project is a demonstration of how to use [React Query](https://react-query.
 
 This demo project is setup with:
 
-- [Vite](https://vitejs.dev/)
-- [WindiCSS](https://windicss.org/)
-- [React Hook Form](https://react-hook-form.com/)
-- [React Modal](http://reactcommunity.org/react-modal/)
-- [Axios](https://github.com/axios/axios)
+- [Vite](https://vitejs.dev/): A very fast build tool
+- [WindiCSS](https://windicss.org/): A very fast Tailwind CSS compiler
+- [React Hook Form](https://react-hook-form.com/): Form builder and validation library
+- [React Modal](http://reactcommunity.org/react-modal/): An accessible modal component
+- [Axios](https://github.com/axios/axios): Promised based HTTP client for browsers
+- [JSON Server](https://github.com/typicode/json-server): Full fake REST API server
 
 I've written a breakdown article for this project which is available on [Sitepoint](https://www.sitepoint.com/blog/).
 
@@ -34,7 +35,7 @@ Go to the project directory
 Install dependencies
 
 ```bash
-  pnpm install # you can also use npm or yarn
+  npm install
 ```
 
 Setup database file
@@ -46,13 +47,13 @@ cp api/sample.db.json api/db.json
 Start the `json-server`
 
 ```bash
-  pnpm run json-server
+  npm run json-server
 ```
 
 Launch another terminal and start the Vite server
 
 ```bash
-  pnpm run dev
+  npm run dev
 ```
 
 Head over to your browser and open the URL `localhost:3000` to access the application
