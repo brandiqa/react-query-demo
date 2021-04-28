@@ -51,7 +51,7 @@ function UserTable({ users }) {
       <td>{user.last_name}</td>
       <td className="hover:underline">{user.email}</td>
       <td>{user.gender}</td>
-      <td className="border-none inline-flex">
+      <td className="inline-flex border-none">
         <Link
           className="p-2 text-cyan-800 hover:text-cyan-500"
           to={`/user/edit/${user.id}`}
@@ -76,17 +76,17 @@ function UserTable({ users }) {
         deleteAction={onDelete}
         cancelAction={hideModal}
       />
-      <div className="flex mb-4 items-center justify-between">
+      <div className="flex items-center justify-between mb-4">
         <Link
           to="/user/create"
-          className="rounded font-semibold border-2 border-teal-700 py-1 px-4 text-teal-900 hover:border-none hover:bg-teal-800 hover:text-white"
+          className="px-4 py-1 font-semibold text-teal-900 border-2 border-teal-700 rounded hover:border-none hover:bg-teal-800 hover:text-white"
         >
           Create User
         </Link>
         {flashMessage && <FlashAlert message={flashMessage} />}
       </div>
       <table className="table-fixed">
-        <thead className="bg-cyan-900 text-white">
+        <thead className="text-white bg-cyan-900">
           <tr className="py-4">
             <th className="w-1/12">Id</th>
             <th className="w-3/12">First Name</th>

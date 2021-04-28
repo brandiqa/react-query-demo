@@ -10,7 +10,7 @@ function UserForm({ user, submitText, submitAction }) {
     formState: { errors },
     handleSubmit,
   } = useForm({
-    defaultValues: user || {}
+    defaultValues: user || {},
   })
 
   const history = useHistory()
@@ -28,7 +28,10 @@ function UserForm({ user, submitText, submitAction }) {
         <section className="flex flex-col field md:flex-row">
           <div>
             <label htmlFor="first_name">First Name</label>
-            <input type="text" {...register('first_name', { required: true })} />
+            <input
+              type="text"
+              {...register('first_name', { required: true })}
+            />
             <span className="errors">
               {errors.first_name && 'First name is required'}
             </span>
@@ -77,7 +80,11 @@ function UserForm({ user, submitText, submitAction }) {
           >
             {submitText}
           </button>
-          <button className="border-2 border-gray-600 shadow-md text-white text-gray-600 btn hover:bg-gray-600 hover:text-gray-100" type="button" onClick={() => history.goBack()}>
+          <button
+            className="border-2 border-gray-600 shadow-md text-white text-gray-600 btn hover:bg-gray-600 hover:text-gray-100"
+            type="button"
+            onClick={() => history.goBack()}
+          >
             Back
           </button>
         </div>
