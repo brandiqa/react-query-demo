@@ -7,9 +7,8 @@ import { AppContextProvider } from './store/app-context'
 
 import Navbar from './layout/Navbar'
 import BasicQuery from './views/BasicQuery'
-import InfinteQuery from './views/InfinteQuery'
+import InfiniteQuery from './views/InfiniteQuery'
 import PaginatedQuery from './views/PaginatedQuery'
-
 import CreateUser from './views/CreateUser'
 import EditUser from './views/EditUser'
 
@@ -22,7 +21,7 @@ function App() {
       <header>
         <Navbar />
       </header>
-      <main className="container mx-auto mt-8 p-4 lg:w-screen-lg">
+      <main className="container p-4 mx-auto mt-8 lg:w-screen-lg">
         <QueryClientProvider client={queryClient}>
           <AppContextProvider>
             <Switch>
@@ -33,7 +32,7 @@ function App() {
                 <PaginatedQuery />
               </Route>
               <Route path="/infinite">
-                <InfinteQuery />
+                <InfiniteQuery />
               </Route>
               <Route path="/user/create">
                 <CreateUser />
