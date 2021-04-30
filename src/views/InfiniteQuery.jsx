@@ -2,7 +2,7 @@ import React from 'react'
 import { useInfiniteQuery } from 'react-query'
 import axios from 'axios'
 
-function InfinteQuery() {
+function InfiniteQuery() {
   const pageLimit = 5
 
   const fetchUsers = ({ pageParam = 1 }) =>
@@ -27,7 +27,6 @@ function InfinteQuery() {
     error,
     fetchNextPage,
     hasNextPage,
-    isFetching,
     isFetchingNextPage,
     status,
   } = useInfiniteQuery('infiniteUsers', fetchUsers, {
@@ -43,7 +42,7 @@ function InfinteQuery() {
         const nextPage = urlParams.get('_page')
         return nextPage
       } else {
-        return 1
+        return undefined
       }
     },
   })
@@ -51,9 +50,9 @@ function InfinteQuery() {
   let userList
 
   if (data) {
-    userList = data.pages.map((group, index) => (
+    userList = data.pages.map((page, index) => (
       <React.Fragment key={index}>
-        {group.data.map((user) => (
+        {page.data.map((user) => (
           <li key={user.id}>
             {user.id}. {user.first_name} {user.last_name}
           </li>
@@ -68,11 +67,9 @@ function InfinteQuery() {
       <div>
         {error && <div>An error occurred: {error.message}</div>}
 
-        {isFetching && <div>Fetching...</div>}
-
         {isFetchingNextPage && <div>Fetching Next Page...</div>}
 
-        {status === 'success' && <ul className="my-8 ml-4">{userList}</ul>}
+        {status === 'success' && <ul className="my-4 ml-4">{userList}</ul>}
       </div>
       <div>
         <button
@@ -87,4 +84,4 @@ function InfinteQuery() {
   )
 }
 
-export default InfinteQuery
+export default InfiniteQuery
