@@ -6,10 +6,8 @@ import { useMutation } from 'react-query'
 import { AppContext } from '../store/app-context'
 import UserForm from '../components/UserForm'
 
-async function postUser(newUser) {
-  const response = await axios.post('http://localhost:3004/users', newUser)
-  return await response.data
-}
+const postUser = async (newUser) =>
+  await (await axios.post('http://localhost:3004/users', newUser)).data
 
 function CreateUser() {
   const [flashMessage, setFlashMessage] = useContext(AppContext)
