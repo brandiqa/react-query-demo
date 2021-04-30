@@ -5,12 +5,12 @@ import { useParams, Redirect } from 'react-router-dom'
 
 import UserForm from '../components/UserForm'
 
-const getUser = async ({ queryKey }) => {
+const fetchUser = async ({ queryKey }) => {
   const [_key, { id }] = queryKey
   const response = await fetch(`http://localhost:3004/users/${id}`)
 
   if (!response.ok) {
-    throw new Error(response.json().message)
+    throw new Error(response.statusText)
   }
 
   return response.json()
@@ -20,11 +20,11 @@ function EditUser() {
   const { id } = useParams()
   const { data, error, isLoading, isError } = useQuery(
     ['user', { id }],
-    getUser
+    fetchUser
   )
 
-  const mutation = useMutation((formData) =>
-    axios.put(`http://localhost:3004/users/${id}`, formData)
+  const mutation = useMutation((updatedUser) =>
+    axios.put(`http://localhost:3004/users/${id}`, updatedUser)
   )
 
   const { isSuccess } = mutation
@@ -41,7 +41,7 @@ function EditUser() {
     <div>
       <h2>Edit User</h2>
       <div>
-        {isError && <div>{error}</div>}
+        {isError && <div>{error.message}</div>}
 
         {isLoading && <div>Loading...</div>}
 
